@@ -90,7 +90,7 @@ class ForgotPasswordController extends Controller
 
         $ENV = get($_ENV, 'APP_ENV', 'production');
 
-        $res = ['message' => 'OTP generated successful'];
+        $res = ['message' => 'OTP generated successful', 'username'=>$user->username];
 
         if ($ENV === 'production') {
 
@@ -107,8 +107,6 @@ class ForgotPasswordController extends Controller
 
             return $this->json($res);
         }
-
-        $res['redirect'] = $_ENV['APP_URL'] . '/guest/set-password?username=' . $user->username . '&otp=' . $otp;
 
         $res['otp'] = $otp;
 

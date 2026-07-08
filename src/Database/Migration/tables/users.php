@@ -38,14 +38,6 @@ return [
         "DATETIME",
         "NULL",
     ],
-    'refresh_token'=>[
-        'TEXT',
-        'NULL'
-    ],
-    'refresh_token_updated_at'=>[
-        'DATETIME',
-        'NULL'
-    ],
     'otp'            => [
         "VARCHAR(6)",
         "NULL",

@@ -83,8 +83,7 @@ class SetPasswordController extends Controller
         $this->db->update('users', $args, ['id' => $uid]);
 
         return $this->json([
-            'message' => 'Password updated successful',
-            'redirect' => $_ENV['APP_URL'].'/guest/login'
+            'message' => 'Password updated successful'
         ]);
 
     }

@@ -72,7 +72,7 @@ class LoginControllerApi extends Controller
 
         $token = $jwt->encode($data);
 
-        $refresh =  $jwt->set_refresh_token($user->id);
+        $refresh =  $jwt->set_refresh_token($data);
 
 
         return $this->json(compact('token', 'refresh'));

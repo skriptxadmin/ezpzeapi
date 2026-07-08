@@ -32,7 +32,7 @@ class RegisterController extends Controller
             'email'    => 'required|email|unique:users,email',
             'mobile'   => 'required|regex:/^[0-9]*$/|unique:users,mobile',
             'fullname' => 'required|min:3|max:30',
-            'username' => 'required|min:3|max:30|unique:users,username',
+            'username' => 'required|min:3|max:30|unique:users,username|regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/',
         ];
         $messages = [
 
@@ -70,7 +70,7 @@ class RegisterController extends Controller
 
         $ENV = get($_ENV, 'APP_ENV', 'production');
 
-        $res = ['message' => 'User registration successful'];
+        $res = ['message' => 'User registration successful', 'username'=>$username];
 
         if ($ENV === 'production') {
 
@@ -90,8 +90,6 @@ class RegisterController extends Controller
             return $this->json($res);
             
         }
-
-        $res['redirect'] = $_ENV['APP_URL'].'/guest/set-password?username='.$username.'&otp='.$otp;
 
         $res['otp'] = $otp;
         

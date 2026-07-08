@@ -185,4 +185,40 @@ class UploadController extends Controller
         return $this->json(['message' => 'Removed file successfully']);
 
     }
+
+    public function delete(
+    Request $request,
+    Response $response,
+    array $args
+): Response {
+
+    $data = $request->getParsedBody();
+
+    $key = $data['key'] ?? null;
+
+    if (!$key) {
+
+        return $this->json([
+            'error' => 'Image key required'
+        ], 422);
+    }
+
+   $filePath =
+    __DIR__ .
+    '/../../public/uploads/' .
+    $key;
+
+    if (!file_exists($filePath)) {
+
+        return $this->json([
+            'error' => 'Image not found'
+        ], 404);
+    }
+
+    unlink($filePath);
+
+    return $this->json([
+        'message' => 'Image deleted successfully'
+    ]);
+}
 }

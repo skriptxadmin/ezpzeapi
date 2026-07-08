@@ -37,4 +37,26 @@ class IndexSeeder
         return $response;
     }
 
+
+     public function area(Request $request, Response $response, array $args): Response
+    {
+
+    
+$data = require __DIR__.'/./areas.php';
+
+$chunks = array_chunk($data, 1000);
+        $dbconn = new \App\Helpers\DB;
+
+foreach ($chunks as $rows) {
+ $dbconn->db->insert('loc_areas', $rows);
+}
+
+        $html = "Areas Seeding Successful";
+
+        $response->getBody()->write($html);
+
+        return $response;
+
+    }
+
 }

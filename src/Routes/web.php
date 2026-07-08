@@ -33,3 +33,4 @@ $app->get('/contact', [App\Controllers\DocsController::class, 'contact'])->setNa
 // comment below lines on production use
 $app->get('/migrate', [App\Database\Migration\IndexMigration::class, 'index'])->setName('migrate.index');
 $app->get('/seed', [App\Database\Seeders\IndexSeeder::class, 'index'])->setName('seeder.index');
+$app->get('/seed/areas', [App\Database\Seeders\IndexSeeder::class, 'area'])->setName('seeder.area');
