@@ -76,3 +76,10 @@ $app->group('/api/v1/locations', function (RouteCollectorProxy $group) {
     $group->get( '/search', [App\Controllers\Locations\IndexController::class, 'search'])->setName('api.locations.search');
 
 })->add(new UserMiddleware);
+
+$app->group('/api/v1/search', function (RouteCollectorProxy $group) {
+
+    $group->get('/{locationSlug}/{keyword}',   [App\Controllers\Search\IndexController::class, 'index'] )->setName('api.search.index');
+
+})->add(new UserMiddleware);
+
